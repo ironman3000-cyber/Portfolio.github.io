@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Onkar Rajshekhar Birajdar | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0e0e12;
+    --bg2: #16161d;
+    --bg3: #1e1e28;
+    --accent: #c9a96e;
+    --accent2: #e8c97d;
+    --text: #f0ede8;
+    --muted: #9e9b94;
+    --border: rgba(201,169,110,0.2);
+    --card: #1a1a23;
+  }
+  [data-theme="light"] {
+    --bg: #faf8f4;
+    --bg2: #f2ede4;
+    --bg3: #e8e0d0;
+    --accent: #8b6914;
+    --accent2: #a07820;
+    --text: #1a1714;
+    --muted: #6b6560;
+    --border: rgba(139,105,20,0.2);
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.4s, color 0.4s;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(14,14,18,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  [data-theme="light"] nav { background: rgba(250,248,244,0.92); }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted); font-size: 0.85rem;
+    letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .theme-btn {
+    background: none; border: 1px solid var(--border);
+    color: var(--accent); cursor: pointer;
+    padding: 6px 14px; border-radius: 20px; font-size: 0.8rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .theme-btn:hover { background: var(--accent); color: var(--bg); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--accent); transition: 0.3s; }
+
+  /* SECTIONS */
+  section { padding: 100px 2rem 60px; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.5rem; font-weight: 500;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 3rem;
+  }
+  .divider { width: 40px; height: 2px; background: var(--accent); margin: 1rem 0 2.5rem; }
+
+  /* HOME */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 80px;
+    max-width: 1100px;
+  }
+  .home-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; width: 100%;
+  }
+  .home-text { }
+  .home-greeting {
+    font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.2rem; font-weight: 500;
+  }
+  .home-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.1; margin-bottom: 1.5rem;
+  }
+  .home-tagline {
+    font-size: 1rem; color: var(--muted); line-height: 1.8;
+    max-width: 480px; margin-bottom: 2.5rem;
+  }
+  .home-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 12px 28px; background: var(--accent); color: var(--bg);
+    border: none; border-radius: 4px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500; cursor: pointer;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+  .btn-outline {
+    padding: 12px 28px; background: transparent;
+    border: 1px solid var(--accent); color: var(--accent);
+    border-radius: 4px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500; cursor: pointer;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { background: var(--accent); color: var(--bg); }
+  .home-photo-wrap {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .home-photo-frame {
+    position: relative; width: 340px; height: 400px;
+  }
+  .photo-border {
+    position: absolute; top: -12px; left: -12px;
+    width: 100%; height: 100%;
+    border: 2px solid var(--accent); border-radius: 4px;
+    opacity: 0.4;
+  }
+  .home-photo-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    border-radius: 4px; position: relative; z-index: 1;
+    filter: grayscale(20%);
+  }
+  .photo-placeholder {
+    width: 100%; height: 100%; background: var(--bg3);
+    border-radius: 4px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    border: 2px dashed var(--border); position: relative; z-index: 1;
+  }
+  .photo-placeholder span { color: var(--muted); font-size: 0.85rem; text-align: center; padding: 0 1rem; }
+
+  /* ABOUT */
+  #about { border-top: 1px solid var(--border); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .about-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.8rem;
+  }
+  .about-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; margin-bottom: 1rem; color: var(--accent);
+  }
+  .about-card p, .about-card li {
+    color: var(--muted); font-size: 0.92rem; line-height: 1.8;
+  }
+  .about-card ul { list-style: none; padding: 0; }
+  .about-card li::before { content: "— "; color: var(--accent); }
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.5rem; }
+  .skill-tag {
+    background: var(--bg3); border: 1px solid var(--border);
+    color: var(--accent); font-size: 0.78rem; padding: 4px 12px;
+    border-radius: 20px; letter-spacing: 0.04em;
+  }
+
+  /* ACHIEVEMENTS */
+  #achievements { border-top: 1px solid var(--border); }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .cert-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.6rem; transition: border-color 0.25s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .cert-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%; background: var(--accent);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .cert-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .cert-card:hover::before { opacity: 1; }
+  .cert-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .cert-card h3 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .cert-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+  .cert-date { font-size: 0.75rem; color: var(--accent); margin-top: 0.8rem; letter-spacing: 0.06em; }
+
+  /* PROJECTS */
+  #projects { border-top: 1px solid var(--border); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden; transition: transform 0.25s, border-color 0.25s;
+  }
+  .project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+  .project-thumb {
+    height: 180px; background: var(--bg3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .project-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .project-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--accent); color: var(--bg);
+    font-size: 0.7rem; padding: 3px 10px; border-radius: 20px;
+    font-weight: 500; letter-spacing: 0.05em;
+  }
+  .project-body { padding: 1.4rem; }
+  .project-body h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; }
+  .project-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .project-tag {
+    font-size: 0.72rem; background: var(--bg3);
+    color: var(--muted); padding: 3px 10px; border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  /* GALLERY */
+  #gallery { border-top: 1px solid var(--border); }
+  .gallery-tabs { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .gallery-tab {
+    background: none; border: 1px solid var(--border);
+    color: var(--muted); padding: 8px 20px; border-radius: 20px;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; transition: all 0.2s;
+  }
+  .gallery-tab.active, .gallery-tab:hover {
+    background: var(--accent); color: var(--bg); border-color: var(--accent);
+  }
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .gallery-item {
+    aspect-ratio: 4/3; background: var(--bg3);
+    border-radius: 6px; border: 1px solid var(--border);
+    overflow: hidden; cursor: pointer; transition: transform 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: var(--muted);
+    position: relative;
+  }
+  .gallery-item:hover { transform: scale(1.03); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.6); color: #fff;
+    font-size: 0.75rem; padding: 6px 10px;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .gallery-item:hover .gallery-label { opacity: 1; }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 4px; }
+  .lightbox-close {
+    position: fixed; top: 20px; right: 24px;
+    background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer;
+  }
+
+  /* CONTACT */
+  #contact { border-top: 1px solid var(--border); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-info p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .contact-links li a {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none; color: var(--text);
+    font-size: 0.9rem; transition: color 0.2s;
+  }
+  .contact-links li a:hover { color: var(--accent); }
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: 6px;
+    background: var(--bg3); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form input, .contact-form textarea {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 12px 16px;
+    color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  .contact-form input:focus, .contact-form textarea:focus {
+    border-color: var(--accent);
+  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); }
+  .contact-form textarea { resize: vertical; min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.82rem;
+  }
+  footer span { color: var(--accent); }
+
+  /* SCROLL ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .home-inner { grid-template-columns: 1fr; text-align: center; }
+    .home-photo-wrap { order: -1; }
+    .home-photo-frame { width: 240px; height: 280px; }
+    .home-btns { justify-content: center; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg2); padding: 1.5rem 2rem; gap: 1.2rem; border-bottom: 1px solid var(--border); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ORB</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;gap:12px;align-items:center;">
+    <button class="theme-btn" id="themeBtn">☀ Light</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <div class="home-inner">
+    <div class="home-text fade-up">
+      <p class="home-greeting">Welcome to my portfolio</p>
+      <h1 class="home-name">
+        Onkar<br/>Rajshekhar<br/>Birajdar
+      </h1>
+      <p class="home-tagline">
+        A curious and driven engineering student from MIT Vishwaprayag University,
+        passionate about AI, design thinking, and building solutions that make a real difference.
+        Currently exploring the intersection of technology and human-centred design.
+      </p>
+      <div class="home-btns">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="home-photo-wrap fade-up" style="transition-delay:0.15s">
+      <div class="home-photo-frame">
+        <div class="photo-border"></div>
+        <!-- Replace src with: assets/profile.jpg -->
+        <img src="assets/profile.jpg" alt="Onkar Rajshekhar Birajdar"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="photo-placeholder" style="display:none;">
+          <span style="font-size:3rem;">👤</span>
+          <span>Add your photo to<br/>assets/profile.jpg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label fade-up">Who I Am</p>
+  <h2 class="section-title fade-up">About Me</h2>
+  <div class="about-grid">
+    <div class="about-card fade-up">
+      <h3>🎓 Education</h3>
+      <p>
+        Currently pursuing my undergraduate degree at MIT Vishwaprayag University, Solapur, Maharashtra.
+        My studies span computer science fundamentals, applied AI, and engineering design.
+        I approach academics with consistency and a genuine curiosity to learn beyond the syllabus.
+      </p>
+    </div>
+    <div class="about-card fade-up" style="transition-delay:0.1s">
+      <h3>💡 Interests</h3>
+      <ul>
+        <li>Artificial Intelligence &amp; Machine Learning</li>
+        <li>Design Thinking &amp; Problem Solving</li>
+        <li>Smart Infrastructure &amp; IoT</li>
+        <li>Web Development</li>
+        <li>Chemistry &amp; Applied Sciences</li>
+      </ul>
+    </div>
+    <div class="about-card fade-up" style="transition-delay:0.2s">
+      <h3>🎯 Goals</h3>
+      <p>
+        I aim to become a versatile technology professional who builds practical, impactful solutions.
+        My short-term goal is to strengthen my AI and development skills through projects and certifications,
+        while my long-term vision is to contribute to smart city infrastructure and sustainable technology.
+      </p>
+    </div>
+    <div class="about-card fade-up" style="transition-delay:0.3s">
+      <h3>💪 Strengths &amp; Skills</h3>
+      <div class="skills-wrap">
+        <span class="skill-tag">Team Collaboration</span>
+        <span class="skill-tag">Critical Thinking</span>
+        <span class="skill-tag">HTML / CSS / JS</span>
+        <span class="skill-tag">Python Basics</span>
+        <span class="skill-tag">Research</span>
+        <span class="skill-tag">Adaptability</span>
+        <span class="skill-tag">Communication</span>
+        <span class="skill-tag">AI Tools</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <p class="section-label fade-up">Certifications &amp; Awards</p>
+  <h2 class="section-title fade-up">Achievements</h2>
+  <div class="cert-grid">
+    <div class="cert-card fade-up">
+      <div class="cert-icon">📜</div>
+      <h3>Coursera — Revisiting Chemistry (ACE-AS1201)</h3>
+      <p>Successfully completed an online course authorized by MIT Vishwaprayag University and offered through Coursera. The course covered preparatory chemistry concepts for advanced studies.</p>
+      <p class="cert-date">FEB 9, 2026 · COURSERA.ORG/VERIFY/1SA5HUV4APYA</p>
+    </div>
+    <div class="cert-card fade-up" style="transition-delay:0.1s">
+      <div class="cert-icon">🌐</div>
+      <h3>Cisco NetAcad Certificate</h3>
+      <p>Completed networking and IT essentials coursework through Cisco Networking Academy, building foundational knowledge in networking concepts and infrastructure.</p>
+      <p class="cert-date">CISCO NETACAD · ADD YOUR DATE</p>
+    </div>
+    <div class="cert-card fade-up" style="transition-delay:0.2s">
+      <div class="cert-icon">🤖</div>
+      <h3>Yuva AI Certificate</h3>
+      <p>Participated in the Yuva AI programme, gaining practical exposure to artificial intelligence concepts, applications, and India's national AI strategy under the AI for All initiative.</p>
+      <p class="cert-date">YUVA AI · ADD YOUR DATE</p>
+    </div>
+    <div class="cert-card fade-up" style="transition-delay:0.3s">
+      <div class="cert-icon">🏆</div>
+      <h3>AI4A Programme Participant</h3>
+      <p>Selected and participated in the AI for All (AI4A) programme, developing an intelligent cricket coaching solution — Smart Batting Coach — using AI-based analysis.</p>
+      <p class="cert-date">MIT VISHWAPRAYAG UNIVERSITY</p>
+    </div>
+    <div class="cert-card fade-up" style="transition-delay:0.4s">
+      <div class="cert-icon">💡</div>
+      <h3>Design Thinking Workshop</h3>
+      <p>Completed a structured design thinking project focused on reducing mobile addiction among college students, applying empathy mapping, ideation, and prototyping methodologies.</p>
+      <p class="cert-date">ADD YEAR · MIT VISHWAPRAYAG</p>
+    </div>
+    <div class="cert-card fade-up" style="transition-delay:0.5s">
+      <div class="cert-icon">🛣️</div>
+      <h3>ACE Project — Smart Road Maintenance</h3>
+      <p>Currently working on an applied computing and engineering (ACE) project developing a smart system for road maintenance monitoring, incorporating sensor data and AI-based damage detection.</p>
+      <p class="cert-date">ONGOING · 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label fade-up">What I've Built</p>
+  <h2 class="section-title fade-up">Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card fade-up">
+      <div class="project-thumb">
+        🏏
+        <span class="project-badge">AI4A</span>
+      </div>
+      <div class="project-body">
+        <h3>Smart Batting Coach</h3>
+        <p>
+          An AI-powered cricket coaching solution developed as part of the AI4A programme. 
+          The system analyses a batsman's stance, swing, and footwork using computer vision to 
+          provide real-time corrective feedback, making quality coaching accessible to all players.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">AI / ML</span>
+          <span class="project-tag">Computer Vision</span>
+          <span class="project-tag">Cricket</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card fade-up" style="transition-delay:0.1s">
+      <div class="project-thumb">
+        📱
+        <span class="project-badge">Design Thinking</span>
+      </div>
+      <div class="project-body">
+        <h3>Reducing Mobile Addiction on Campus</h3>
+        <p>
+          A human-centred design project addressing smartphone overuse among college students.
+          Through empathy mapping and user interviews, we designed an intervention framework 
+          combining awareness campaigns, app-usage nudges, and peer-support buddy systems.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Design Thinking</span>
+          <span class="project-tag">UX Research</span>
+          <span class="project-tag">Behaviour Design</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card fade-up" style="transition-delay:0.2s">
+      <div class="project-thumb">
+        🛣️
+        <span class="project-badge">ACE — Ongoing</span>
+      </div>
+      <div class="project-body">
+        <h3>Smart Road Maintenance System</h3>
+        <p>
+          An IoT and AI-based system currently under development for automated road condition 
+          monitoring. Sensors deployed on roads detect potholes, cracks, and wear, feeding data 
+          to a dashboard that prioritises maintenance and alerts civic authorities.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">IoT</span>
+          <span class="project-tag">AI</span>
+          <span class="project-tag">Smart City</span>
+          <span class="project-tag">In Progress</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card fade-up" style="transition-delay:0.3s">
+      <div class="project-thumb">
+        🌐
+        <span class="project-badge">Web</span>
+      </div>
+      <div class="project-body">
+        <h3>This Digital Portfolio</h3>
+        <p>
+          A fully responsive personal portfolio website built from scratch using HTML, CSS, and 
+          JavaScript — no frameworks used. Features dark/light mode toggle, smooth scroll 
+          animations, lightbox gallery, and a mobile-friendly layout.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <p class="section-label fade-up">Memories &amp; Milestones</p>
+  <h2 class="section-title fade-up">Gallery</h2>
+  <div class="gallery-tabs fade-up">
+    <button class="gallery-tab active" data-filter="all">All</button>
+    <button class="gallery-tab" data-filter="photos">Photos</button>
+    <button class="gallery-tab" data-filter="certs">Certificates</button>
+    <button class="gallery-tab" data-filter="events">Events</button>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Profile photo -->
+    <div class="gallery-item" data-cat="photos">
+      <img src="assets/profile.jpg" alt="Profile"
+           onerror="this.style.display='none';this.parentElement.innerHTML+='👤'" />
+      <div class="gallery-label">Profile Photo</div>
+    </div>
+    <!-- Coursera cert -->
+    <div class="gallery-item" data-cat="certs">
+      <img src="assets/coursera_cert.jpg" alt="Coursera Certificate"
+           onerror="this.style.display='none';this.parentElement.innerHTML+='📜'" />
+      <div class="gallery-label">Coursera — Chemistry ACE</div>
+    </div>
+    <!-- NetAcad cert placeholder -->
+    <div class="gallery-item" data-cat="certs">
+      <img src="assets/netacad_cert.jpg" alt="NetAcad Certificate"
+           onerror="this.style.display='none';this.parentElement.innerHTML+='🌐'" />
+      <div class="gallery-label">Cisco NetAcad</div>
+    </div>
+    <!-- Yuva AI cert placeholder -->
+    <div class="gallery-item" data-cat="certs">
+      <img src="assets/yuva_ai_cert.jpg" alt="Yuva AI Certificate"
+           onerror="this.style.display='none';this.parentElement.innerHTML+='🤖'" />
+      <div class="gallery-label">Yuva AI Certificate</div>
+    </div>
+    <!-- AI4A event -->
+    <div class="gallery-item" data-cat="events">
+      <img src="assets/ai4a_event.jpg" alt="AI4A Event"
+           onerror="this.style.display='none';this.parentElement.innerHTML+='🏆'" />
+      <div class="gallery-label">AI4A Programme</div>
+    </div>
+    <!-- Design thinking event -->
+    <div class="gallery-item" data-cat="events">
+      <img src="assets/dt_event.jpg" alt="Design Thinking"
+           onerror="this.style.display='none';this.parentElement.innerHTML+='💡'" />
+      <div class="gallery-label">Design Thinking Workshop</div>
+    </div>
+    <!-- Extra photos -->
+    <div class="gallery-item" data-cat="photos">
+      <img src="assets/photo2.jpg" alt="Photo"
+           onerror="this.style.display='none';this.parentElement.innerHTML+='🎓'" />
+      <div class="gallery-label">Campus Life</div>
+    </div>
+    <div class="gallery-item" data-cat="events">
+      <img src="assets/ace_project.jpg" alt="ACE Project"
+           onerror="this.style.display='none';this.parentElement.innerHTML+='🛣️'" />
+      <div class="gallery-label">ACE Road Project</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label fade-up">Let's Connect</p>
+  <h2 class="section-title fade-up">Contact</h2>
+  <div class="contact-inner">
+    <div class="contact-info fade-up">
+      <p>
+        I'm always open to new opportunities, collaborations, or just a good conversation
+        about technology and ideas. Feel free to reach out through any of the channels below.
+      </p>
+      <ul class="contact-links">
+        <li>
+          <a href="mailto:birajdaronkar60@gmail.com">
+            <div class="contact-icon">✉️</div>
+            <span>birajdaronkar60@gmail.com</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://linkedin.com/in/onkar-birajdar" target="_blank" rel="noopener">
+            <div class="contact-icon">💼</div>
+            <span>LinkedIn — Add your profile URL</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/onkar-birajdar" target="_blank" rel="noopener">
+            <div class="contact-icon">🐙</div>
+            <span>GitHub — Add your username</span>
+          </a>
+        </li>
+        <li>
+          <a href="tel:+91XXXXXXXXXX">
+            <div class="contact-icon">📞</div>
+            <span>+91 — Add your phone number</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="contact-form fade-up" style="transition-delay:0.15s">
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Your Email" />
+      <textarea placeholder="Your Message"></textarea>
+      <button class="btn-primary" onclick="alert('Thank you! This form will work once hosted with a backend or Formspree.')">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed &amp; built by <span>Onkar Rajshekhar Birajdar</span> · MIT Vishwaprayag University · 2026</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <img src="" id="lightboxImg" alt="Gallery image" />
+</div>
+
+<script>
+  // THEME TOGGLE
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    const isLight = document.body.getAttribute('data-theme') === 'light';
+    document.body.setAttribute('data-theme', isLight ? '' : 'light');
+    themeBtn.textContent = isLight ? '☀ Light' : '🌙 Dark';
+  });
+
+  // HAMBURGER
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // GALLERY FILTER
+  document.querySelectorAll('.gallery-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.style.display = (filter === 'all' || item.dataset.cat === filter) ? '' : 'none';
+      });
+    });
+  });
+
+  // LIGHTBOX
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      if (img) {
+        document.getElementById('lightboxImg').src = img.src;
+        document.getElementById('lightbox').classList.add('open');
+      }
+    });
+  });
+  document.getElementById('lightboxClose').addEventListener('click', () => {
+    document.getElementById('lightbox').classList.remove('open');
+  });
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+  });
+
+  // SCROLL ANIMATIONS
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
